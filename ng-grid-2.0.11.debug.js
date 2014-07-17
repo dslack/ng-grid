@@ -3312,6 +3312,10 @@ ngGridDirectives.directive('ngGrid', ['$compile', '$filter', '$templateCache', '
                                     $scope.$emit('ngGridEventSorted', grid.config.sortInfo);
                                 }
                                 $scope.$emit("ngGridEventData", grid.gridId);
+                                
+                                $scope.$evalAsync(function() {
+                                    $scope.adjustScrollLeft(grid.$viewport.scrollLeft());
+                                });
                             };
                             $scope.$on('$destroy', $scope.$parent.$watch(options.data, dataWatcher));
                             $scope.$on('$destroy', $scope.$parent.$watch(options.data + '.length', function() {
