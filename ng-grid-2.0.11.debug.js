@@ -2082,8 +2082,10 @@ var ngGrid = function ($scope, options, sortService, domUtilityService, $filter,
         for (var i = 0; i < x; i++)
           if($scope.columns[i].visible) cols++;
         
-        var repaint = cols !== $scope.renderedColumns.length ? true : false;
         
+        var repaint = cols !== $scope.renderedColumns.length || self.config.repaint ? true : false;
+
+    	self.config.repaint = false;
         if(repaint) {
           $scope.columns_pinned = 0;
           for (var i = 0; i < x; i++) {
